@@ -21,11 +21,23 @@ const _diskSpace = async () => {
         free: freeSpaceGB
     };
 }
+const _memoryUsage = () => {
+    const memoryUsage = process.memoryUsage();
+    const memoryUsageInMB = {
+        rss: memoryUsage.rss / 1024 / 1024, // Resident Set Size
+        heapTotal: memoryUsage.heapTotal / 1024 / 1024, // Heap Total
+        heapUsed: memoryUsage.heapUsed / 1024 / 1024, // Heap Used
+        external: memoryUsage.external / 1024 / 1024, // External memory
+    };
+
+    return memoryUsageInMB;
+};
 
 
 
 module.exports={
     _uptime,
     _cpuLoad,
+    _memoryUsage,
     _diskSpace,
 }
