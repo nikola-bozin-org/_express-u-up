@@ -3,11 +3,11 @@ const {_uptime,_cpuLoad,_diskSpace} = require('./checkers')
 
 const healthcheck = async(req,res)=>{
     const health = {};
-    const {uptime,cpuload,diskspace} = req.query;
-    if(uptime==='1'){
+    const {uptime,cpuload,diskspace} = req.body;
+    if(uptime){
         health['uptime'] = {value:_uptime(),metric:'seconds'};
     }
-    if(cpuload==='1'){
+    if(cpuload){
         health['cpuload'] = {value: await _cpuLoad(), metric: 'percentage'};
     }
     if(diskspace){
@@ -23,7 +23,7 @@ const healthcheck = async(req,res)=>{
 
 const configure = (config)=>{
     const {path} = config;
-    route.get(path,healthcheck)
+    route.post(path,healthcheck)
 }
 
 module.exports = {
