@@ -1,0 +1,6 @@
+ode_modules
+.env
+Dockerfile
+.dockerignore
+.git
+.gitignore

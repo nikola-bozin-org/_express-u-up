@@ -1,0 +1,9 @@
+docker build -t <name> .
+
+example: docker build -t my-app:v1 .
+//ovo :v1 je neka vrsta tag-a
+
+//port number on left is one we are mapping to one exposed in container. left is localhost, right is container
+docker run -e PORT=3006 --name my-app-container-cmd -p 3006:3006  my-app
+
+for more env variables, we need more of: -e x=y
